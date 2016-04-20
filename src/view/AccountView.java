@@ -5,6 +5,7 @@ import model.AccountModel;
 import model.ModelEvent;
 
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -33,7 +34,7 @@ public class AccountView extends JFrameView {
         panel.add(save_button);
         panel.add(exit_button);
 
-        panel.setLayout(new GridLayout(10, 4, 6, 6));
+        panel.setLayout(new GridLayout(5, 1, 40, 20));
         this.getContentPane().add(panel, BorderLayout.CENTER);
 
         pack();
@@ -44,10 +45,32 @@ public class AccountView extends JFrameView {
     public static void main(String[] args) {
         ArrayList<AccountModel> accounts = new ArrayList<>();
         String file;
-        if(args.length > 0)
+        String line;
+        BufferedReader reader = null;
+        try {
             file = args[0];
-        else
-            return;
-        new AccountController(accounts, file);
+            FileInputStream fin = new FileInputStream(file);
+            DataInputStream input = new DataInputStream(fin);
+            reader = new BufferedReader(new InputStreamReader(input));
+            reader.readLine();
+            while((line = reader.readLine()) != null) {
+                String account_info[] = line.split(",");
+                String name = account_info[0];
+                String account_id = account_info[1];
+                double balance = Double.parseDouble(account_info[2]);
+
+                AccountModel account = new AccountModel(account_id, name, balance);
+                accounts.add(account);
+                System.out.print("Account Information: " + account.getAccount_id() + " " + account.getName() + " " +
+                        account.getBalance() + "\n");
+            }
+
+            reader.close();
+            new AccountController(accounts, file);
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.print("Input file input.txt not found, please place 'input.txt' in directory MVCBankingApp");
+            System.exit(1);
+        }
     }
 }

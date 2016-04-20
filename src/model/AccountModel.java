@@ -6,7 +6,7 @@ public class AccountModel extends AbstractModel {
     private String name;
     private double balance = 0;
 
-    public AccountModel(String id, String n, float b) {
+    public AccountModel(String id, String n, double b) {
         this.account_id = id;
         this.name = n;
         this.balance = b;
