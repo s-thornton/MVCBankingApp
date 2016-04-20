@@ -15,7 +15,7 @@ public class AccountController extends AbstractController {
     public AccountController(ArrayList<AccountModel> acc, String fn){
         accounts = acc;
         file_name = fn;
-        setModel(new AccountModel("1", "Sean", 10));
+        setModel(new AccountModel("1", "Sean", 10, 0));
         setView(new AccountView((AccountModel)getModel(), this, accounts));
         ((JFrameView)getView()).setVisible(true);
     }

@@ -86,6 +86,7 @@ public class AccountView extends JFrameView {
         try {
             String file_name = args[0];
             String line;
+            int index = 0;
             ArrayList<AccountModel> accounts = new ArrayList<>();
             FileInputStream fin = new FileInputStream(file_name);
             DataInputStream input = new DataInputStream(fin);
@@ -96,11 +97,11 @@ public class AccountView extends JFrameView {
                 String name = account_info[0];
                 String account_id = account_info[1];
                 double balance = Double.parseDouble(account_info[2]);
-
-                AccountModel account = new AccountModel(account_id, name, balance);
+                AccountModel account = new AccountModel(account_id, name, balance, index);
                 accounts.add(account);
-                System.out.print("Account Information: " + account.getAccount_id() + " " + account.getName() + " " +
-                        account.getBalance() + "\n");
+                System.out.print("Account Information: " + accounts.get(index).getAccount_id() + " " +
+                        accounts.get(index).getName() + " " + accounts.get(index).getBalance() + "\n");
+                index++;
             }
             reader.close();
             new AccountController(accounts, file_name);
