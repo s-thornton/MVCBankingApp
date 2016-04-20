@@ -1,7 +1,5 @@
 package model;
 
-/**
- * Created by sean on 4/19/16.
- */
-public class Model {
+public interface Model {
+    void notifyChanged(ModelEvent e);
 }
