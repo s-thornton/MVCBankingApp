@@ -5,6 +5,8 @@ import model.AccountModel;
 import model.ModelEvent;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -17,6 +19,7 @@ public class AccountView extends JFrameView {
     public static final String SAVE = "Save";
     public static final String EXIT = "Exit";
     public ArrayList<AccountModel> accounts = new ArrayList<>();
+    public String file_name;
 
     public AccountView (AccountModel model, AccountController controller, ArrayList<AccountModel> account_list) {
 
@@ -50,22 +53,43 @@ public class AccountView extends JFrameView {
         this.getContentPane().add(accounts_dropdown, BorderLayout.NORTH);
         this.getContentPane().add(panel, BorderLayout.CENTER);
 
+        Jbutton_handler button_handler = new Jbutton_handler();
+        JComboBox_handler box_handler = new JComboBox_handler();
+        bank_usd_button.addActionListener(button_handler);
+        bank_euro_button.addActionListener(button_handler);
+        bank_yuan_button.addActionListener(button_handler);
+        save_button.addActionListener(button_handler);
+        exit_button.addActionListener(button_handler);
+        accounts_dropdown.addActionListener(box_handler);
+
+
         pack();
     }
 
     public void modelChanged(ModelEvent event) { String msg = event.getAmount() + ""; }
 
+    class Jbutton_handler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            ((AccountController)getController()).operation(e.getActionCommand(), file_name);
+        }
+    }
+
+    class JComboBox_handler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JComboBox cb = (JComboBox)e.getSource();
+            int account_index = (int)cb.getSelectedIndex();
+            ((AccountController)getController()).set_user(account_index);
+        }
+    }
     public static void main(String[] args) {
 
-        ArrayList<AccountModel> accounts = new ArrayList<>();
-        String file_name;
-        String line;
-        BufferedReader reader = null;
         try {
-            file_name = args[0];
+            String file_name = args[0];
+            String line;
+            ArrayList<AccountModel> accounts = new ArrayList<>();
             FileInputStream fin = new FileInputStream(file_name);
             DataInputStream input = new DataInputStream(fin);
-            reader = new BufferedReader(new InputStreamReader(input));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             reader.readLine();
             while((line = reader.readLine()) != null) {
                 String account_info[] = line.split(",");

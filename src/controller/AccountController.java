@@ -20,7 +20,7 @@ public class AccountController extends AbstractController {
         ((JFrameView)getView()).setVisible(true);
     }
 
-    public void operation(String o){
+    public void operation(String o, String fn){
         switch (o) {
             case AccountView.BANK_USD:
                 break;
@@ -29,11 +29,14 @@ public class AccountController extends AbstractController {
             case AccountView.BANK_YUAN:
                 break;
             case AccountView.SAVE:
+                save(fn);
                 break;
             case AccountView.EXIT:
+                save(fn);
+                System.exit(0);
                 break;
             default:
-                save(file_name);
+                save(fn);
                 System.exit(1);
         }
     }
@@ -46,10 +49,14 @@ public class AccountController extends AbstractController {
                 writer.println(a.getName() + ", " + a.getAccount_id() + ", " + a.getBalance());
             writer.close();
         } catch (Exception e) {
-            System.out.print("Unable to save, exiting");
+            e.printStackTrace();
+            System.out.println("Unable to save, exiting");
             System.exit(1);
         }
+    }
 
+    public void set_user(int account_id) {
+        user = accounts.get(account_id);
     }
 
 }
