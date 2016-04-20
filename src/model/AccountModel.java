@@ -23,4 +23,21 @@ public class AccountModel extends AbstractModel {
     public void setBalance(double balance) { this.balance = balance; }
     public int getAccount_index() { return account_index; }
     public void setAccount_index(int account_index) { this.account_index = account_index; }
+
+    public boolean deposit(AccountModel acc, double amount, double currency_rate) {
+        acc.setBalance(acc.getBalance() + (amount * (1/currency_rate)));
+        ModelEvent current = new ModelEvent(this, 1, "deposit", acc.getBalance() * (1/currency_rate), acc);
+        notifyChanged(current);
+        return true;
+    }
+
+    public boolean withdraw(AccountModel acc, double amount, double currency_rate) {
+        ModelEvent current;
+        if(acc.getBalance() < (amount * (1/currency_rate)))
+            return false;
+        acc.setBalance(acc.getBalance() - (amount * (1/currency_rate)));
+        current = new ModelEvent(this, 2, "withdraw", acc.getBalance() * (1/currency_rate), acc);
+        notifyChanged(current);
+        return true;
+    }
 }

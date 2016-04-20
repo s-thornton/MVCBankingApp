@@ -23,13 +23,13 @@ public class AccountController extends AbstractController {
     public void operation(String o, String fn){
         switch (o) {
             case AccountView.BANK_USD:
-                new BankingController((AccountModel)getModel(), current_account, 1.0);
+                new BankingController((AccountModel)getModel(), current_account, "USD", 1.0);
                 break;
             case AccountView.BANK_EURO:
-                new BankingController((AccountModel)getModel(), current_account, 0.88);
+                new BankingController((AccountModel)getModel(), current_account, "EURO", 0.88);
                 break;
             case AccountView.BANK_YUAN:
-                new BankingController((AccountModel)getModel(), current_account, 6.47);
+                new BankingController((AccountModel)getModel(), current_account, "YUAN", 6.47);
                 break;
             case AccountView.SAVE:
                 save(fn);
