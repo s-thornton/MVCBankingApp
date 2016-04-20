@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class AccountController extends AbstractController {
     public ArrayList<AccountModel> accounts = new ArrayList<>();
-    public AccountModel user;
+    public AccountModel current_account;
     public String file_name;
 
     public AccountController(ArrayList<AccountModel> acc, String fn){
@@ -23,10 +23,13 @@ public class AccountController extends AbstractController {
     public void operation(String o, String fn){
         switch (o) {
             case AccountView.BANK_USD:
+                new BankingController((AccountModel)getModel(), current_account, 1.0);
                 break;
             case AccountView.BANK_EURO:
+                new BankingController((AccountModel)getModel(), current_account, 0.88);
                 break;
             case AccountView.BANK_YUAN:
+                new BankingController((AccountModel)getModel(), current_account, 6.47);
                 break;
             case AccountView.SAVE:
                 save(fn);
@@ -55,8 +58,8 @@ public class AccountController extends AbstractController {
         }
     }
 
-    public void set_user(int account_id) {
-        user = accounts.get(account_id);
+    public void set_current_account(int account_id) {
+        current_account = accounts.get(account_id);
     }
 
 }

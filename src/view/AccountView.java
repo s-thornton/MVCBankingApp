@@ -34,7 +34,7 @@ public class AccountView extends JFrameView {
         }
         JComboBox accounts_dropdown = new JComboBox<>(accounts_array);
         accounts_dropdown.setSelectedIndex(0);
-        controller.user = accounts.get(0);
+        controller.current_account = accounts.get(0);
 
         JButton bank_usd_button = new JButton(BANK_USD);
         JButton bank_euro_button = new JButton(BANK_EURO);
@@ -48,7 +48,7 @@ public class AccountView extends JFrameView {
         panel.add(bank_yuan_button);
         panel.add(save_button);
         panel.add(exit_button);
-        panel.setLayout(new GridLayout(5, 1, 40, 20));
+        panel.setLayout(new GridLayout(5, 1));
 
         this.getContentPane().add(accounts_dropdown, BorderLayout.NORTH);
         this.getContentPane().add(panel, BorderLayout.CENTER);
@@ -78,7 +78,7 @@ public class AccountView extends JFrameView {
         public void actionPerformed(ActionEvent e) {
             JComboBox cb = (JComboBox)e.getSource();
             int account_index = (int)cb.getSelectedIndex();
-            ((AccountController)getController()).set_user(account_index);
+            ((AccountController)getController()).set_current_account(account_index);
         }
     }
     public static void main(String[] args) {

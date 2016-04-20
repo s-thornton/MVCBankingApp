@@ -3,16 +3,17 @@ package model;
 import java.awt.event.ActionEvent;
 
 public class ModelEvent {
-    private double amount;
-    private AccountModel account;
+    private double user_balance;
+    private AccountModel user;
+    
     public ModelEvent(Object obj, int id, String message, double a, AccountModel acc) {
         //super(obj, id, message);
-        this.account = acc;
-        amount = a;
+        this.user = acc;
+        this.user_balance = a;
     }
 
-    public double getAmount() { return amount; }
-    public void setAmount(double amount) { this.amount = amount; }
-    public AccountModel getAccount() { return account; }
-    public void setAccount(AccountModel account) { this.account = account; }
+    public double getAmount() { return user_balance; }
+    public void setAmount(double balance) { this.user_balance = balance; }
+    public AccountModel getAccount() { return user; }
+    public void setAccount(AccountModel user) { this.user = user; }
 }
