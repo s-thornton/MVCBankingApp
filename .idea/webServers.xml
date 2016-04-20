@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="33809814-1d9c-41c1-9a32-17e6b698df40" name="Google Drive" url="http://localhost">
+        <fileTransfer mountedRoot="$USER_HOME$/Google Drive/Projects" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
