@@ -58,12 +58,12 @@ public class AccountView extends JFrameView {
     public static void main(String[] args) {
 
         ArrayList<AccountModel> accounts = new ArrayList<>();
-        String file;
+        String file_name;
         String line;
         BufferedReader reader = null;
         try {
-            file = args[0];
-            FileInputStream fin = new FileInputStream(file);
+            file_name = args[0];
+            FileInputStream fin = new FileInputStream(file_name);
             DataInputStream input = new DataInputStream(fin);
             reader = new BufferedReader(new InputStreamReader(input));
             reader.readLine();
@@ -78,9 +78,8 @@ public class AccountView extends JFrameView {
                 System.out.print("Account Information: " + account.getAccount_id() + " " + account.getName() + " " +
                         account.getBalance() + "\n");
             }
-
             reader.close();
-            new AccountController(accounts, file);
+            new AccountController(accounts, file_name);
         } catch(Exception e) {
             e.printStackTrace();
             System.out.print("Input file input.txt not found, please place 'input.txt' in directory MVCBankingApp");
