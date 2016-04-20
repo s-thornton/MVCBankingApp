@@ -56,6 +56,7 @@ public class BankingView extends JFrameView {
         account_panel.add(current_account_balance);
         account_panel.add(input_amount);
 
+        input_amount.setText("0.00");
         current_account_balance.setEditable(false);
         current_account_name.setEditable(false);
         current_account_id.setEditable(false);

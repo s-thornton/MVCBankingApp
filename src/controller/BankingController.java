@@ -39,12 +39,14 @@ public class BankingController extends AbstractController {
                 ((AccountModel)getModel()).deposit(account,
                         Double.parseDouble(((BankingView)getView()).input_amount.getText()), currency_rate);
                 new_balance = account.getBalance() * currency_rate;
+                ((BankingView)getView()).input_amount.setText("0.00");
                 ((BankingView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
                 break;
             case "Withdraw":
                 ((AccountModel)getModel()).withdraw(account,
                         Double.parseDouble(((BankingView)getView()).input_amount.getText()), currency_rate);
                 new_balance = account.getBalance() * currency_rate;
+                ((BankingView)getView()).input_amount.setText("0.00");
                 ((BankingView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
                 break;
             case "Close":
