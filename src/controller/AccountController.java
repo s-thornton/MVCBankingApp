@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class AccountController extends AbstractController {
     public ArrayList<AccountModel> accounts = new ArrayList<>();
+    public AccountModel user;
     public String file_name;
 
     public AccountController(ArrayList<AccountModel> acc, String fn){
@@ -17,4 +18,5 @@ public class AccountController extends AbstractController {
         setView(new AccountView((AccountModel)getModel(), this, accounts));
         ((JFrameView)getView()).setVisible(true);
     }
+
 }

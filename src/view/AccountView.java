@@ -10,16 +10,28 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class AccountView extends JFrameView {
+
     public static final String BANK_USD = "Bank in USD";
     public static final String BANK_EURO = "Bank in Euro";
     public static final String BANK_YUAN = "Bank in Yuan";
     public static final String SAVE = "Save";
     public static final String EXIT = "Exit";
-    public ArrayList<AccountModel> account_list = new ArrayList<>();
+    public ArrayList<AccountModel> accounts = new ArrayList<>();
 
-    public AccountView (AccountModel model, AccountController controller, ArrayList<AccountModel> accounts) {
+    public AccountView (AccountModel model, AccountController controller, ArrayList<AccountModel> account_list) {
+
         super(model, controller);
-        account_list = accounts;
+
+        accounts = account_list;
+        String[] accounts_array = new String[accounts.size()];
+        int i = 0;
+        for(AccountModel a : accounts) {
+            accounts_array[i] = a.getName() + " " + a.getAccount_id();
+            i++;
+        }
+        JComboBox accounts_dropdown = new JComboBox<>(accounts_array);
+        accounts_dropdown.setSelectedIndex(0);
+        controller.user = accounts.get(0);
 
         JButton bank_usd_button = new JButton(BANK_USD);
         JButton bank_euro_button = new JButton(BANK_EURO);
@@ -33,8 +45,9 @@ public class AccountView extends JFrameView {
         panel.add(bank_yuan_button);
         panel.add(save_button);
         panel.add(exit_button);
-
         panel.setLayout(new GridLayout(5, 1, 40, 20));
+
+        this.getContentPane().add(accounts_dropdown, BorderLayout.NORTH);
         this.getContentPane().add(panel, BorderLayout.CENTER);
 
         pack();
@@ -43,6 +56,7 @@ public class AccountView extends JFrameView {
     public void modelChanged(ModelEvent event) { String msg = event.getAmount() + ""; }
 
     public static void main(String[] args) {
+
         ArrayList<AccountModel> accounts = new ArrayList<>();
         String file;
         String line;
