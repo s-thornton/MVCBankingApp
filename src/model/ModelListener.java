@@ -1,7 +1,5 @@
 package model;
 
-/**
- * Created by sean on 4/19/16.
- */
-public class ModelListener {
+public interface ModelListener {
+    public void modelChanged(ModelEvent event);
 }
