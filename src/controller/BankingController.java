@@ -50,7 +50,7 @@ public class BankingController extends AbstractController {
                 } catch (Exception e) {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null,
-                            "Failed to withdraw funds, amount must be comprised of numeric characters");
+                            "Failed to deposit funds, amount must be comprised of numeric characters");
                 }
                 break;
             case "Withdraw":
