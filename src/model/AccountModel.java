@@ -1,7 +1,7 @@
 package model;
 
 import javax.swing.*;
-
+//Account model that has basic account information and withdraw and deposit operations
 public class AccountModel extends AbstractModel {
 
     private String account_id;
@@ -32,7 +32,7 @@ public class AccountModel extends AbstractModel {
             return false;
         }
         acc.setBalance(acc.getBalance() + (amount * (1/currency_rate)));
-        ModelEvent current = new ModelEvent(this, 1, "deposit", acc.getBalance() * (1/currency_rate), acc);
+        ModelEvent current = new ModelEvent(this, 1, "deposit", acc.getBalance(), acc);
         notifyChanged(current);
         return true;
     }
@@ -47,7 +47,7 @@ public class AccountModel extends AbstractModel {
             return false;
         }
         acc.setBalance(acc.getBalance() - (amount * (1/currency_rate)));
-        ModelEvent current = new ModelEvent(this, 2, "withdraw", acc.getBalance() * (1/currency_rate), acc);
+        ModelEvent current = new ModelEvent(this, 2, "withdraw", acc.getBalance(), acc);
         notifyChanged(current);
         return true;
     }

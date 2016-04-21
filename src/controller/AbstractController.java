@@ -2,7 +2,7 @@ package controller;
 
 import model.Model;
 import view.View;
-
+//Generalized Controller for getting and setting Model and View Classes
 public abstract class AbstractController implements Controller{
     private View view;
     private Model model;

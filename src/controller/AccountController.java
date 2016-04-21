@@ -6,7 +6,7 @@ import view.JFrameView;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+//Receives input from AccountView and accesses AccountModel and BankingController to perform operations
 public class AccountController extends AbstractController {
     public ArrayList<AccountModel> accounts = new ArrayList<>();
     public AccountModel current_account;

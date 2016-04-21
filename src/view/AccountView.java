@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
+//Main interface class that passes data to AccountController and accesses data from AccountModel
 public class AccountView extends JFrameView {
 
     public static final String BANK_USD = "Bank in USD";

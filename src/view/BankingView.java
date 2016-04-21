@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//Bank interface class that passes operation input from user to the BankingController class
 public class BankingView extends JFrameView {
 
     AccountModel current_account;
@@ -80,7 +80,9 @@ public class BankingView extends JFrameView {
     }
 
 
-    public void modelChanged(ModelEvent event) { }
+    public void modelChanged(ModelEvent event) {
+        current_account_balance.setText(String.format("%.2f", event.getUser_balance() * currency_rate));
+    }
 
     class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {

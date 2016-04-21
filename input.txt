@@ -1,7 +1,7 @@
 name, id, balance
-Sean Thornton,        930421, 100050.0
-Malapa Bushra,        123456, 100.0
-Peter Benjamin,        078910, 200.5
-Goday Priya,        125671, 0.5
-John Smith,        444451, 3000.0
-Daniel Nguyen,        000xxx, 2000.0
+Sean Thornton,           930421, 100420.55
+Malapa Bushra,           123456, 100.0
+Peter Benjamin,           078910, 200.5
+Goday Priya,           125671, 0.5
+John Smith,           444451, 3000.0
+Daniel Nguyen,           000xxx, 2000.0

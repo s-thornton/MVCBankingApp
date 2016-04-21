@@ -5,7 +5,7 @@ import view.BankingView;
 import view.JFrameView;
 
 import javax.swing.*;
-
+//Receives input from BankingView and access AccountModel to perform actions deposit and withraw
 public class BankingController extends AbstractController {
 
     private AccountModel account;

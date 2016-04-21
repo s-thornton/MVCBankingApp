@@ -1,6 +1,6 @@
 package model;
 import java.util.ArrayList;
-
+//Generalized Model for getting models, updating changes and setting listeners
 public abstract class AbstractModel implements Model {
     private ArrayList listeners = new ArrayList(5);
 
