@@ -1,6 +1,5 @@
 package view;
 
-import controller.AccountController;
 import controller.BankingController;
 import model.AccountModel;
 import model.Model;
@@ -20,10 +19,11 @@ public class BankingView extends JFrameView {
     public static final String DEPOSIT = "Deposit";
     public static final String CLOSE = "Close";
 
-    public JTextField input_amount = new JTextField();
-    public JTextField current_account_balance = new JTextField();
-    public JTextField current_account_name = new JTextField();
-    public JTextField current_account_id = new JTextField();
+    public JTextField input_amount = new JTextField(20);
+    public JTextField current_account_balance = new JTextField(15);
+    public JTextField current_account_name = new JTextField(15);
+    public JTextField current_account_id = new JTextField(15);
+
 
     public BankingView(Model model, BankingController controller, AccountModel acc, double rate) {
         super(model, controller);
@@ -40,17 +40,16 @@ public class BankingView extends JFrameView {
         button_panel.add(withdraw_button);
         button_panel.add(deposit_button);
         button_panel.add(close_button);
-        button_panel.setLayout(new GridLayout(1, 1));
+        button_panel.setLayout(new GridLayout(1, 3, 40, 4));
 
         withdraw_button.addActionListener(button_handler);
         deposit_button.addActionListener(button_handler);
         close_button.addActionListener(button_handler);
 
-        this.getContentPane().add(button_panel, BorderLayout.CENTER);
+        this.getContentPane().add(button_panel, BorderLayout.SOUTH);
 
         JPanel account_panel = new JPanel();
-        account_panel.setLayout(new GridLayout(4, 1));
-
+        account_panel.setLayout(new GridLayout(4, 4, 40, 4));
         account_panel.add(current_account_id);
         account_panel.add(current_account_name);
         account_panel.add(current_account_balance);
@@ -61,16 +60,27 @@ public class BankingView extends JFrameView {
         current_account_name.setEditable(false);
         current_account_id.setEditable(false);
 
-        this.getContentPane().add(account_panel, BorderLayout.NORTH);
+        this.getContentPane().add(account_panel, BorderLayout.EAST);
+
+        JLabel id_label = new JLabel("Account ID: ");
+        JLabel name_label = new JLabel("Name: ");
+        JLabel balance_label = new JLabel("Current Balance: ");
+        JLabel input_label = new JLabel("Enter amount in " + ((BankingController)getController()).getCurrency() + ": ");
+
+        JPanel label_panel = new JPanel();
+        label_panel.setLayout(new GridLayout(4, 4, 40, 4));
+        label_panel.add(id_label);
+        label_panel.add(name_label);
+        label_panel.add(balance_label);
+        label_panel.add(input_label);
+
+        this.getContentPane().add(label_panel, BorderLayout.WEST);
 
         pack();
     }
 
 
-    public void modelChanged(ModelEvent event) {
-        String display_amount;
-
-    }
+    public void modelChanged(ModelEvent event) { }
 
     class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {

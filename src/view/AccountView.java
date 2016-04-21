@@ -19,7 +19,6 @@ public class AccountView extends JFrameView {
     public static final String SAVE = "Save";
     public static final String EXIT = "Exit";
     public ArrayList<AccountModel> accounts = new ArrayList<>();
-    public String file_name;
 
     public AccountView (AccountModel model, AccountController controller, ArrayList<AccountModel> account_list) {
 
@@ -66,11 +65,11 @@ public class AccountView extends JFrameView {
         pack();
     }
 
-    public void modelChanged(ModelEvent event) { String msg = event.getAmount() + ""; }
+    public void modelChanged(ModelEvent event) { }
 
     class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            ((AccountController)getController()).operation(e.getActionCommand(), file_name);
+            ((AccountController)getController()).operation(e.getActionCommand(), "input.txt");
         }
     }
 

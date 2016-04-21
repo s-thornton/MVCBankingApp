@@ -1,9 +1,10 @@
 package controller;
 
 import model.AccountModel;
-import model.BankingModel;
 import view.BankingView;
 import view.JFrameView;
+
+import javax.swing.*;
 
 public class BankingController extends AbstractController {
 
@@ -22,6 +23,8 @@ public class BankingController extends AbstractController {
                 account.getBalance() * currency_rate));
         ((BankingView)getView()).current_account_name.setText(account.getName());
         ((BankingView)getView()).current_account_id.setText(account.getAccount_id());
+        ((BankingView)getView()).setTitle(account.getName() + " " + account.getAccount_id() +
+                "; Operations in " + currency);
         ((JFrameView)getView()).setVisible(true);
     }
 
@@ -33,21 +36,36 @@ public class BankingController extends AbstractController {
     public void setCurrency(String currency) { this.currency = currency; }
 
     public void operation(String o) {
+        double amount;
         double new_balance;
         switch(o) {
             case "Deposit":
-                ((AccountModel)getModel()).deposit(account,
-                        Double.parseDouble(((BankingView)getView()).input_amount.getText()), currency_rate);
-                new_balance = account.getBalance() * currency_rate;
-                ((BankingView)getView()).input_amount.setText("0.00");
-                ((BankingView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
+                try{
+                    amount = Double.parseDouble(((BankingView)getView()).input_amount.getText());
+                    if(((AccountModel)getModel()).deposit(account, amount, currency_rate)) {
+                        new_balance = account.getBalance() * currency_rate;
+                        ((BankingView)getView()).input_amount.setText("0.00");
+                        ((BankingView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null,
+                            "Failed to withdraw funds, amount must be comprised of numeric characters greater than 0");
+                }
                 break;
             case "Withdraw":
-                ((AccountModel)getModel()).withdraw(account,
-                        Double.parseDouble(((BankingView)getView()).input_amount.getText()), currency_rate);
-                new_balance = account.getBalance() * currency_rate;
-                ((BankingView)getView()).input_amount.setText("0.00");
-                ((BankingView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
+                try {
+                    amount = Double.parseDouble(((BankingView)getView()).input_amount.getText());
+                    if(((AccountModel)getModel()).withdraw(account, amount, currency_rate)) {
+                        new_balance = account.getBalance() * currency_rate;
+                        ((BankingView)getView()).input_amount.setText("0.00");
+                        ((BankingView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null,
+                            "Failed to withdraw funds, amount must be comprised of numeric characters greater than 0");
+                }
                 break;
             case "Close":
                 ((JFrameView)getView()).dispose();

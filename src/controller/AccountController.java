@@ -37,7 +37,6 @@ public class AccountController extends AbstractController {
             case AccountView.EXIT:
                 save(fn);
                 System.exit(0);
-                break;
             default:
                 save(fn);
                 System.exit(1);
@@ -58,8 +57,6 @@ public class AccountController extends AbstractController {
         }
     }
 
-    public void set_current_account(int account_id) {
-        current_account = accounts.get(account_id);
-    }
+    public void set_current_account(int account_id) { current_account = accounts.get(account_id); }
 
 }

@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.*;
+
 public class AccountModel extends AbstractModel {
 
     private String account_id;
@@ -25,6 +27,10 @@ public class AccountModel extends AbstractModel {
     public void setAccount_index(int account_index) { this.account_index = account_index; }
 
     public boolean deposit(AccountModel acc, double amount, double currency_rate) {
+        if(amount < 1){
+            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than 0");
+            return false;
+        }
         acc.setBalance(acc.getBalance() + (amount * (1/currency_rate)));
         ModelEvent current = new ModelEvent(this, 1, "deposit", acc.getBalance() * (1/currency_rate), acc);
         notifyChanged(current);
@@ -32,11 +38,16 @@ public class AccountModel extends AbstractModel {
     }
 
     public boolean withdraw(AccountModel acc, double amount, double currency_rate) {
-        ModelEvent current;
-        if(acc.getBalance() < (amount * (1/currency_rate)))
+        if(acc.getBalance() < (amount * (1/currency_rate))) {
+            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount requested exceeds available balance");
             return false;
+        }
+        else if(amount < 1) {
+            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than 0");
+            return false;
+        }
         acc.setBalance(acc.getBalance() - (amount * (1/currency_rate)));
-        current = new ModelEvent(this, 2, "withdraw", acc.getBalance() * (1/currency_rate), acc);
+        ModelEvent current = new ModelEvent(this, 2, "withdraw", acc.getBalance() * (1/currency_rate), acc);
         notifyChanged(current);
         return true;
     }
