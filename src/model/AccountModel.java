@@ -28,7 +28,7 @@ public class AccountModel extends AbstractModel {
 
     public boolean deposit(AccountModel acc, double amount, double currency_rate) {
         if(amount < 1){
-            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than 0");
+            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than or equal to 1");
             return false;
         }
         acc.setBalance(acc.getBalance() + (amount * (1/currency_rate)));
@@ -43,7 +43,7 @@ public class AccountModel extends AbstractModel {
             return false;
         }
         else if(amount < 1) {
-            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than 0");
+            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than or equal to 1");
             return false;
         }
         acc.setBalance(acc.getBalance() - (amount * (1/currency_rate)));
