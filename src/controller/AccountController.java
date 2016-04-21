@@ -48,7 +48,7 @@ public class AccountController extends AbstractController {
             PrintWriter writer = new PrintWriter(fn);
             writer.println("name, id, balance");
             for(AccountModel a : accounts)
-                writer.println(a.getName() + ", " + a.getAccount_id() + ", " + a.getBalance());
+                writer.println(a.getName() + "," + a.getAccount_id() + ", " + a.getBalance());
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
