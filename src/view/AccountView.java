@@ -16,6 +16,8 @@ public class AccountView extends JFrameView {
     public static final String BANK_USD = "Bank in USD";
     public static final String BANK_EURO = "Bank in Euro";
     public static final String BANK_YUAN = "Bank in Yuan";
+    public static final String WITHDRAWAGENT = "Create Withdraw Agent";
+    public static final String DEPOSITAGENT = "Create Deposit Agent";
     public static final String SAVE = "Save";
     public static final String EXIT = "Exit";
     public ArrayList<AccountModel> accounts = new ArrayList<>();
@@ -38,6 +40,8 @@ public class AccountView extends JFrameView {
         JButton bank_usd_button = new JButton(BANK_USD);
         JButton bank_euro_button = new JButton(BANK_EURO);
         JButton bank_yuan_button = new JButton(BANK_YUAN);
+        JButton withdraw_agent_button = new JButton(WITHDRAWAGENT);
+        JButton deposit_agent_button = new JButton(DEPOSITAGENT);
         JButton save_button = new JButton(SAVE);
         JButton exit_button = new JButton(EXIT);
         JPanel panel = new JPanel();
@@ -45,9 +49,11 @@ public class AccountView extends JFrameView {
         panel.add(bank_usd_button);
         panel.add(bank_euro_button);
         panel.add(bank_yuan_button);
+        panel.add(withdraw_agent_button);
+        panel.add(deposit_agent_button);
         panel.add(save_button);
         panel.add(exit_button);
-        panel.setLayout(new GridLayout(5, 1));
+        panel.setLayout(new GridLayout(7,1));
 
         this.getContentPane().add(accounts_dropdown, BorderLayout.NORTH);
         this.getContentPane().add(panel, BorderLayout.CENTER);
@@ -60,6 +66,8 @@ public class AccountView extends JFrameView {
         save_button.addActionListener(button_handler);
         exit_button.addActionListener(button_handler);
         accounts_dropdown.addActionListener(box_handler);
+        withdraw_agent_button.addActionListener(button_handler);
+        deposit_agent_button.addActionListener(button_handler);
 
 
         pack();

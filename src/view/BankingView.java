@@ -19,6 +19,7 @@ public class BankingView extends JFrameView {
     public static final String DEPOSIT = "Deposit";
     public static final String CLOSE = "Close";
 
+
     public JTextField input_amount = new JTextField(20);
     public JTextField current_account_balance = new JTextField(15);
     public JTextField current_account_name = new JTextField(15);
@@ -40,7 +41,7 @@ public class BankingView extends JFrameView {
         button_panel.add(withdraw_button);
         button_panel.add(deposit_button);
         button_panel.add(close_button);
-        button_panel.setLayout(new GridLayout(1, 3, 40, 4));
+        button_panel.setLayout(new GridLayout(3, 3, 40, 4));
 
         withdraw_button.addActionListener(button_handler);
         deposit_button.addActionListener(button_handler);
