@@ -26,29 +26,23 @@ public class AccountModel extends AbstractModel {
     public int getAccount_index() { return account_index; }
     public void setAccount_index(int account_index) { this.account_index = account_index; }
 
-    public boolean deposit(AccountModel acc, double amount, double currency_rate) {
-        if(amount < 1){
-            JOptionPane.showMessageDialog(null, "Failed to deposit funds, amount must be greater than or equal to 1");
+    public boolean validate(double amount, double currency_rate, boolean withdraw) {
+
+        if(amount < 1) {
+            JOptionPane.showMessageDialog(null, "Invalid input, amount must be greater than or equal to 1");
             return false;
         }
-        acc.setBalance(acc.getBalance() + (amount * (1/currency_rate)));
-        ModelEvent current = new ModelEvent(this, 1, "deposit", acc.getBalance(), acc);
-        notifyChanged(current);
-        return true;
-    }
 
-    public boolean withdraw(AccountModel acc, double amount, double currency_rate) {
-        if(acc.getBalance() < (amount * (1/currency_rate))) {
+        if(withdraw && this.getBalance() < (amount * (1/currency_rate))) {
             JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount requested exceeds available balance");
             return false;
         }
-        else if(amount < 1) {
-            JOptionPane.showMessageDialog(null, "Failed to withdraw funds, amount must be greater than or equal to 1");
-            return false;
-        }
-        acc.setBalance(acc.getBalance() - (amount * (1/currency_rate)));
-        ModelEvent current = new ModelEvent(this, 2, "withdraw", acc.getBalance(), acc);
-        notifyChanged(current);
         return true;
+    }
+
+    public void transact(double amount, double currency_rate) {
+        this.setBalance(this.getBalance() + (amount * (1/currency_rate)));
+        ModelEvent current = new ModelEvent(this);
+        notifyChanged(current);
     }
 }

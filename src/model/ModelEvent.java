@@ -4,9 +4,9 @@ public class ModelEvent {
     private double user_balance;
     private AccountModel user;
     
-    public ModelEvent(Object obj, int id, String message, double a, AccountModel acc) {
+    public ModelEvent(AccountModel acc) {
         this.user = acc;
-        this.user_balance = a;
+        this.user_balance = acc.getBalance();
     }
 
     public double getUser_balance() { return user_balance; }

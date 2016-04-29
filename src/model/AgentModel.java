@@ -10,6 +10,7 @@ public class AgentModel extends AbstractModel {
     private int agent_id;
     private AccountModel current_account;
     private double amount;
+    private double amount_transferred;
     private boolean running = false;
     private String operation;
     private double operations_per_second = 0;
@@ -29,35 +30,10 @@ public class AgentModel extends AbstractModel {
 
         switch(this.operation) {
             case "Deposit":
-                try{
-                    amount = Double.parseDouble(((AgentView)getView()).input_amount.getText());
-                    if(((AccountModel)getModel()).deposit(current_account, amount, currency_rate)) {
-                        new_balance = account.getBalance() * currency_rate;
-                        ((AgentView)getView()).input_amount.setText("0.00");
-                        ((AgentView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(null,
-                            "Failed to deposit funds, amount must be comprised of numeric characters");
-                }
+                current_account.transact(amount, 1.0);
                 break;
             case "Withdraw":
-                try {
-                    amount = Double.parseDouble(((AgentView)getView()).input_amount.getText());
-                    if(((AccountModel)getModel()).withdraw(account, amount, currency_rate)) {
-                        new_balance = account.getBalance() * currency_rate;
-                        ((AgentView)getView()).input_amount.setText("0.00");
-                        ((AgentView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(null,
-                            "Failed to withdraw funds, amount must be comprised of numeric characters");
-                }
-                break;
-            case "Close":
-                ((JFrameView)getView()).dispose();
+                current_account.transact(amount, 1.0);
                 break;
             default:
                 break;
