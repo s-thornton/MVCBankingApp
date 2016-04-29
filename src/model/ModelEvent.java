@@ -5,7 +5,6 @@ public class ModelEvent {
     private AccountModel user;
     
     public ModelEvent(Object obj, int id, String message, double a, AccountModel acc) {
-        //super(obj, id, message);
         this.user = acc;
         this.user_balance = a;
     }
