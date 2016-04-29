@@ -13,10 +13,10 @@ public class AgentController extends AbstractController {
     public AccountModel current_account;
     public Double current_rate;
 
-    public AgentController(AccountModel acc_mod){
-//        this.current_account = (AccountModel) acc_mod;
-        setModel((AgentModel)getModel());
-        setView(new AgentView((AgentModel)getModel(), this, acc_mod));
+    public AgentController(AgentModel model, AccountModel acc){
+
+        setModel(model);
+        setView(new AgentView(model, this, acc));
         ((JFrameView)getView()).setVisible(true);
     }
 

@@ -1,6 +1,6 @@
 package model;
 
-public class AgentModel extends Thread {
+public class AgentModel extends AbstractModel {
 
     public AccountModel current_account;
     public double amount;
@@ -8,10 +8,12 @@ public class AgentModel extends Thread {
     public double operations;
 
 
-    public AgentModel (AccountModel acc, double o, double a) {
-        this.current_account = acc;
+    public AgentModel (double o, double a) {
+//        this.current_account = acc;
         this.amount = a;
         this.operations = o;
     }
+    public void run(){
 
+    }
 }

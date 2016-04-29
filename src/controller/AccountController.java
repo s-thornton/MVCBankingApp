@@ -33,7 +33,7 @@ public class AccountController extends AbstractController {
                 new BankingController((AccountModel)getModel(), current_account, "YUAN", 6.47);
                 break;
             case AccountView.WITHDRAWAGENT:
-                new AgentController(current_account);
+                new AgentController((AgentModel)getModel(), current_account);
                 break;
             case AccountView.DEPOSITAGENT:
                 break;

@@ -26,7 +26,7 @@ public class AgentView extends JFrameView {
     public static final String stop = "Stop Agent";
     public static final String dismiss = "Dismiss";
 
-    public AgentView(AgentModel model, AgentController controller, AccountModel acc){
+    public AgentView(Model model, AgentController controller, AccountModel acc){
         super(model, controller);
         this.current_account = acc;
 
@@ -39,7 +39,7 @@ public class AgentView extends JFrameView {
         panel.add(amount_transferred);
         panel.add(ops_completed);
 
-        input_amount.setText(Double.toString(current_account.getBalance()));
+        input_amount.setText(Double.toString (current_account.getBalance()));
         ops_per_second.setText("0");
         state.setText("Running");
         amount_transferred.setText("0");
