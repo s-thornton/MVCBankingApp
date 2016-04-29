@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.AccountController;
 import controller.AgentController;
 import controller.BankingController;
 import controller.Controller;
@@ -13,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AgentView extends JFrameView {
     AccountModel current_account;
@@ -26,8 +28,10 @@ public class AgentView extends JFrameView {
     public static final String stop = "Stop Agent";
     public static final String dismiss = "Dismiss";
 
-    public AgentView(Model model, AgentController controller, AccountModel acc){
+    public AgentView(AgentModel model, AgentController controller, AccountModel acc){
+
         super(model, controller);
+
         this.current_account = acc;
 
         JPanel panel = new JPanel();
@@ -53,12 +57,18 @@ public class AgentView extends JFrameView {
 
         JButton stop_button = new JButton(stop);
         JButton dismiss_button = new JButton(dismiss);
+
+        stop_button.addActionListener(button_hander);
+        dismiss_button.addActionListener(button_hander);
+
         panel.add(stop_button);
         panel.add(dismiss_button);
 
+
+
         panel.setLayout(new GridLayout(5,1));
         this.getContentPane().add(panel, BorderLayout.CENTER);
-
+        pack();
 
     }
 
@@ -68,7 +78,7 @@ public class AgentView extends JFrameView {
 
     class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            ((BankingController)getController()).operation(e.getActionCommand());
+            ((AgentController)getController()).operation(e.getActionCommand());
         }
     }
 }
