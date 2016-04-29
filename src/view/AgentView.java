@@ -5,6 +5,7 @@ import controller.AgentController;
 import controller.BankingController;
 import controller.Controller;
 import model.AccountModel;
+import model.AgentModel;
 import model.Model;
 import model.ModelEvent;
 
@@ -25,9 +26,8 @@ public class AgentView extends JFrameView {
     public static final String stop = "Stop Agent";
     public static final String dismiss = "Dismiss";
 
-    public AgentView(Model model, AgentController controller, AccountModel acc, double rate){
-        super(model, (Controller) controller);
-        this.currency_rate = rate;
+    public AgentView(AgentModel model, AgentController controller, AccountModel acc){
+        super(model, controller);
         this.current_account = acc;
 
         JPanel panel = new JPanel();
@@ -53,6 +53,8 @@ public class AgentView extends JFrameView {
 
         JButton stop_button = new JButton(stop);
         JButton dismiss_button = new JButton(dismiss);
+        panel.add(stop_button);
+        panel.add(dismiss_button);
 
         panel.setLayout(new GridLayout(5,1));
         this.getContentPane().add(panel, BorderLayout.CENTER);

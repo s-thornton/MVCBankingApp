@@ -1,6 +1,7 @@
 package controller;
 
 import model.AccountModel;
+import model.AgentModel;
 import view.AccountView;
 import view.JFrameView;
 
@@ -30,6 +31,11 @@ public class AccountController extends AbstractController {
                 break;
             case AccountView.BANK_YUAN:
                 new BankingController((AccountModel)getModel(), current_account, "YUAN", 6.47);
+                break;
+            case AccountView.WITHDRAWAGENT:
+                new AgentController(current_account);
+                break;
+            case AccountView.DEPOSITAGENT:
                 break;
             case AccountView.SAVE:
                 save(fn);
