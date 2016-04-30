@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class AgentViewRunning extends JFrameView {
+public class AgentThreadView extends JFrameView {
     AccountModel current_account;
     double currency_rate;
     public JTextField input_amount = new JTextField(20);
@@ -34,7 +34,7 @@ public class AgentViewRunning extends JFrameView {
     public static final String ops_completed_string = "Operations Completed";
 
 
-    public AgentViewRunning(AgentModel model, AgentController controller, AccountModel acc){
+    public AgentThreadView(AgentModel model, AgentController controller, AccountModel acc){
 
         super(model, controller);
 

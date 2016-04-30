@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AgentViewStart extends JFrameView{
+public class AgentView extends JFrameView{
 
     AccountModel current_account;
 
@@ -25,7 +25,7 @@ public class AgentViewStart extends JFrameView{
     private JTextField input_amount = new JTextField(15);
     private JTextField ops = new JTextField(15);
 
-    public AgentViewStart(AgentModel model, AgentController controller, AccountModel acc){
+    public AgentView(AgentModel model, AgentController controller, AccountModel acc){
         super (model, controller);
 
         this.current_account = acc;
