@@ -27,6 +27,12 @@ public class AgentView extends JFrameView {
 
     public static final String stop = "Stop Agent";
     public static final String dismiss = "Dismiss";
+    public static final String input_amount_string = "Amount in $:";
+    public static final String ops_per_second_string = "Operations per Second:";
+    public static final String state_string = "State:";
+    public static final String amount_transferred_string = "Amount in $ Transferred:";
+    public static final String ops_completed_string = "Operations Completed";
+
 
     public AgentView(AgentModel model, AgentController controller, AccountModel acc){
 
@@ -36,12 +42,6 @@ public class AgentView extends JFrameView {
 
         JPanel panel = new JPanel();
         Jbutton_handler button_hander = new Jbutton_handler();
-
-        panel.add(input_amount);
-        panel.add(ops_per_second);
-        panel.add(state);
-        panel.add(amount_transferred);
-        panel.add(ops_completed);
 
         input_amount.setText(Double.toString (current_account.getBalance()));
         ops_per_second.setText("0");
@@ -58,16 +58,37 @@ public class AgentView extends JFrameView {
         JButton stop_button = new JButton(stop);
         JButton dismiss_button = new JButton(dismiss);
 
+        // labels :)
+        JLabel input_amount_label = new JLabel(input_amount_string);
+        JLabel ops_per_second_label = new JLabel(ops_per_second_string);
+        JLabel state_label = new JLabel(state_string);
+        JLabel amount_transferred_label = new JLabel(amount_transferred_string);
+        JLabel ops_completed_label = new JLabel(ops_completed_string);
+
+        panel.add(input_amount_label);
+        panel.add(input_amount);
+        panel.add(ops_per_second_label);
+        panel.add(ops_per_second);
+        panel.add(state_label);
+        panel.add(state);
+        panel.add(amount_transferred_label);
+        panel.add(amount_transferred);
+        panel.add(ops_completed_label);
+        panel.add(ops_completed);
+
+        // another panel for buttons for style :)
+        JPanel button_panel = new JPanel();
+
         stop_button.addActionListener(button_hander);
         dismiss_button.addActionListener(button_hander);
 
-        panel.add(stop_button);
-        panel.add(dismiss_button);
+        button_panel.add(stop_button);
+        button_panel.add(dismiss_button);
 
-
-
-        panel.setLayout(new GridLayout(5,1));
-        this.getContentPane().add(panel, BorderLayout.CENTER);
+        panel.setLayout(new GridLayout(5,2));
+        button_panel.setLayout(new GridLayout(2,1));
+        this.getContentPane().add(panel, BorderLayout.NORTH);
+        this.getContentPane().add(button_panel, BorderLayout.SOUTH);
         pack();
 
     }
