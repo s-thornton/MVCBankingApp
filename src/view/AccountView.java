@@ -20,7 +20,7 @@ public class AccountView extends JFrameView {
     public static final String DEPOSITAGENT = "Create Deposit Agent";
     public static final String SAVE = "Save";
     public static final String EXIT = "Exit";
-    public ArrayList<AccountModel> accounts = new ArrayList<>();
+    public static ArrayList<AccountModel> accounts = new ArrayList<>();
 
     public AccountView (AccountModel model, AccountController controller, ArrayList<AccountModel> account_list) {
 
