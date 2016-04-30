@@ -1,10 +1,5 @@
 package model;
 
-import view.AgentView;
-import view.JFrameView;
-
-import javax.swing.*;
-
 public class AgentModel extends AbstractModel {
 
     private int agent_id;
@@ -30,11 +25,11 @@ public class AgentModel extends AbstractModel {
         switch(this.operation) {
 //            case "Deposit":
 //                try{
-//                    amount = Double.parseDouble(((AgentView)getView()).input_amount.getText());
+//                    amount = Double.parseDouble(((AgentViewRunning)getView()).input_amount.getText());
 //                    if(((AccountModel)getModel()).deposit(current_account, amount, currency_rate)) {
 //                        new_balance = account.getBalance() * currency_rate;
-//                        ((AgentView)getView()).input_amount.setText("0.00");
-//                        ((AgentView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
+//                        ((AgentViewRunning)getView()).input_amount.setText("0.00");
+//                        ((AgentViewRunning)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
 //                    }
 //                } catch (Exception e) {
 //                    e.printStackTrace();
@@ -44,11 +39,11 @@ public class AgentModel extends AbstractModel {
 //                break;
 //            case "Withdraw":
 //                try {
-//                    amount = Double.parseDouble(((AgentView)getView()).input_amount.getText());
+//                    amount = Double.parseDouble(((AgentViewRunning)getView()).input_amount.getText());
 //                    if(((AccountModel)getModel()).withdraw(account, amount, currency_rate)) {
 //                        new_balance = account.getBalance() * currency_rate;
-//                        ((AgentView)getView()).input_amount.setText("0.00");
-//                        ((AgentView)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
+//                        ((AgentViewRunning)getView()).input_amount.setText("0.00");
+//                        ((AgentViewRunning)getView()).current_account_balance.setText(String.format("%.2f", new_balance));
 //                    }
 //                } catch (Exception e) {
 //                    e.printStackTrace();

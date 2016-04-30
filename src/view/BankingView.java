@@ -20,7 +20,7 @@ public class BankingView extends JFrameView {
     private static final String CLOSE = "Close";
 
 
-    public JTextField input_amount = new JTextField(20);
+    public JTextField input_amount = new JTextField(15);
     public JTextField current_account_balance = new JTextField(15);
     public JTextField current_account_name = new JTextField(15);
     public JTextField current_account_id = new JTextField(15);
