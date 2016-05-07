@@ -8,23 +8,23 @@ import view.JFrameView;
 
 public class AgentController extends AbstractController {
     private AccountModel current_account;
-    private int numberOfAgents = 0;
+    private int num_agents = 0;
     private String operation;
 
     public AgentController(AccountModel acc, String option, boolean started){
         this.operation = option;
         this.current_account = acc;
-        setModel(new AgentModel('1', acc, 1, 1, option));
+        setModel(new AgentModel('1', acc, 1, 1));
         if (!started) {
             setView(new AgentView((AgentModel) getModel(), this, acc));
             ((JFrameView) getView()).setVisible(true);
-            ((AgentView) getView()).setTitle(option + " Agent: " + numberOfAgents +
+            ((AgentView) getView()).setTitle(option + " Agent: " + num_agents +
                     " for account" + acc.getAccount_id());
         }
         else{
             setView(new AgentThreadView((AgentModel) getModel(), this, acc));
             ((JFrameView) getView()).setVisible(true);
-            ((AgentThreadView) getView()).setTitle(option + " Agent: " + numberOfAgents +
+            ((AgentThreadView) getView()).setTitle(option + " Agent: " + num_agents +
                     " for account" + acc.getAccount_id());
         }
     }
