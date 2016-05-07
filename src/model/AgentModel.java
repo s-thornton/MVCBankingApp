@@ -1,28 +1,23 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AgentModel extends AbstractModel {
 
-    private int agent_id;
+    private static final AtomicInteger seed = new AtomicInteger();
+    private int agent_id = seed.incrementAndGet();
     private AccountModel current_account;
     private double amount;
     private double operations_per_second;
     private ArrayList<AgentThread> agents = new ArrayList<>();
 
-    public AgentModel (int id, AccountModel acc, double n, double a) {
-        this.agent_id = id;
+    public AgentModel (AccountModel acc, double n, double a) {
         this.current_account = acc;
         this.amount = a;
         this.operations_per_second = n;
     }
 
-    public int getAgent_id() { return agent_id; }
-    public void setAgent_id(int agent_id) { this.agent_id = agent_id; }
-    public double get_amount() {return amount;}
-    public double set_amout(double amt){ this.amount = amt;}
-    public double get_ops() {return operations_per_second;}
-    public void set_ops(double ops) {this.operations_per_second = ops;}
     public AccountModel getCurrent_account() { return current_account; }
     public void setCurrent_account(AccountModel current_account) { this.current_account = current_account; }
 

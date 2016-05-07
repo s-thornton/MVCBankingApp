@@ -11,10 +11,11 @@ public class AgentController extends AbstractController {
     private int num_agents = 0;
     private String operation;
 
+
     public AgentController(AccountModel acc, String option, boolean started){
         this.operation = option;
         this.current_account = acc;
-        setModel(new AgentModel('1', acc, 1, 1));
+        setModel(new AgentModel(acc, 1, 1));
         if (!started) {
             setView(new AgentView((AgentModel) getModel(), this, acc));
             ((JFrameView) getView()).setVisible(true);
