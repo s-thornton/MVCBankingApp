@@ -21,9 +21,9 @@ public class AgentView extends JFrameView{
     public static final String start_string = "Start Agent";
     public static final String dismiss_string = "Dismiss";
 
-    private JTextField account_id = new JTextField(15);
-    private JTextField input_amount = new JTextField(15);
-    private JTextField ops = new JTextField(15);
+    public JTextField agent_id = new JTextField(15);
+    public JTextField input_amount = new JTextField(15);
+    public JTextField ops = new JTextField(15);
 
     public AgentView(AgentModel model, AgentController controller, AccountModel acc){
         super (model, controller);
@@ -37,7 +37,7 @@ public class AgentView extends JFrameView{
         JLabel amount_label = new JLabel(amount_string);
         JLabel ops_label = new JLabel(ops_string);
 
-        account_id.setText("");
+        agent_id.setText("");
         input_amount.setText("");
         ops.setText("");
 
@@ -48,7 +48,7 @@ public class AgentView extends JFrameView{
         dismiss_button.addActionListener(button_hander);
 
         panel.add(agent_id_label);
-        panel.add(account_id);
+        panel.add(agent_id);
         panel.add(amount_label);
         panel.add(input_amount);
         panel.add(ops_label);

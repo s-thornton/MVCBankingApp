@@ -19,6 +19,10 @@ public class AgentModel extends AbstractModel {
 
     public int getAgent_id() { return agent_id; }
     public void setAgent_id(int agent_id) { this.agent_id = agent_id; }
+    public double get_amount() {return amount;}
+    public double set_amout(double amt){ this.amount = amt;}
+    public double get_ops() {return operations_per_second;}
+    public void set_ops(double ops) {this.operations_per_second = ops;}
     public AccountModel getCurrent_account() { return current_account; }
     public void setCurrent_account(AccountModel current_account) { this.current_account = current_account; }
 

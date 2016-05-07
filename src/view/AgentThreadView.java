@@ -5,36 +5,34 @@ import controller.AccountController;
 import controller.AgentController;
 import controller.BankingController;
 import controller.Controller;
-import model.AccountModel;
-import model.AgentModel;
-import model.Model;
-import model.ModelEvent;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 
 public class AgentThreadView extends JFrameView {
     AccountModel current_account;
     double currency_rate;
-    public JTextField input_amount = new JTextField(20);
+    public JTextField input_amount_thread = new JTextField(20);
     public JTextField ops_per_second = new JTextField(20);
     public JTextField state = new JTextField(15);
     public JTextField amount_transferred = new JTextField(15);
     public JTextField ops_completed = new JTextField(15);
 
     public static final String stop = "Stop Agent";
-    public static final String dismiss = "Dismiss";
-    public static final String input_amount_string = "Amount in $:";
+    public static final String dismiss_string = "Dismiss";
+    public static final String input_amount_thread_string = "Amount in $:";
     public static final String ops_per_second_string = "Operations per Second:";
     public static final String state_string = "State:";
     public static final String amount_transferred_string = "Amount in $ Transferred:";
     public static final String ops_completed_string = "Operations Completed";
 
 
-    public AgentThreadView(AgentModel model, AgentController controller, AccountModel acc){
+    public AgentThreadView(AgentModel model, AgentController controller, AccountModel acc, AgentThread ATModel){
 
         super(model, controller);
 
@@ -42,31 +40,30 @@ public class AgentThreadView extends JFrameView {
 
         JPanel panel = new JPanel();
         Jbutton_handler button_hander = new Jbutton_handler();
-
-        input_amount.setText(Double.toString (current_account.getBalance()));
-        ops_per_second.setText("0");
+        input_amount_thread.setText(Double.toString(model.get_amount()));
+        ops_per_second.setText(Double.toString(model.get_ops()));
         state.setText("Running");
-        amount_transferred.setText("0");
+        amount_transferred.setText(Double.toString(ATModel.get_amount_transferred()));
         ops_completed.setText("0");
 
-        input_amount.setEditable(false);
+        input_amount_thread.setEditable(false);
         ops_per_second.setEditable(false);
         state.setEditable(false);
         amount_transferred.setEditable(false);
         ops_completed.setEditable(false);
 
         JButton stop_button = new JButton(stop);
-        JButton dismiss_button = new JButton(dismiss);
+        JButton dismiss_button = new JButton(dismiss_string);
 
         // labels :)
-        JLabel input_amount_label = new JLabel(input_amount_string);
+        JLabel input_amount_thread_label = new JLabel(input_amount_thread_string);
         JLabel ops_per_second_label = new JLabel(ops_per_second_string);
         JLabel state_label = new JLabel(state_string);
         JLabel amount_transferred_label = new JLabel(amount_transferred_string);
         JLabel ops_completed_label = new JLabel(ops_completed_string);
 
-        panel.add(input_amount_label);
-        panel.add(input_amount);
+        panel.add(input_amount_thread_label);
+        panel.add(input_amount_thread);
         panel.add(ops_per_second_label);
         panel.add(ops_per_second);
         panel.add(state_label);
