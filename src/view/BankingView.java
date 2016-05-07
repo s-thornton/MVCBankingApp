@@ -85,9 +85,7 @@ public class BankingView extends JFrameView {
         current_account_balance.setText(String.format("%.2f", event.getUser_balance() * currency_rate));
     }
 
-    public AccountModel getCurrent_account() {
-        return current_account;
-    }
+    public AccountModel getCurrent_account() { return current_account; }
 
     public void setCurrent_account(AccountModel current_account) {
         this.current_account = current_account;

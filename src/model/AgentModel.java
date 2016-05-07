@@ -6,12 +6,14 @@ public class AgentModel extends AbstractModel {
 
     private int agent_id;
     private AccountModel current_account;
+    private double amount;
     private double operations_per_second;
     private ArrayList<AgentThread> agents = new ArrayList<>();
 
     public AgentModel (int id, AccountModel acc, double n, double a) {
         this.agent_id = id;
         this.current_account = acc;
+        this.amount = a;
         this.operations_per_second = n;
     }
 
@@ -32,4 +34,7 @@ public class AgentModel extends AbstractModel {
 
         return new_agent_thread;
     }
+
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 }
