@@ -7,13 +7,15 @@ public class ModelEvent{
     private AccountModel user;
     private double amount_transferred;
     private double operations_completed;
+    private String state;
 
     
-    public ModelEvent(AccountModel acc, double a, double c) {
+    public ModelEvent(AccountModel acc, double a, double c, String state) {
         this.user = acc;
         this.user_balance = acc.getBalance();
         this.amount_transferred = a;
         this.operations_completed = c;
+        this.state = state;
     }
 
     public double getUser_balance() { return user_balance; }

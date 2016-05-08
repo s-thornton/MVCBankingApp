@@ -43,7 +43,7 @@ public class AccountModel extends AbstractModel {
     public void transact(double amount, double currency_rate) {
 
         this.setBalance(this.getBalance() + (amount * (1/currency_rate)));
-        ModelEvent current = new ModelEvent(this, amount, 1);
+        ModelEvent current = new ModelEvent(this, amount, 1, "");
         notifyChanged(current);
     }
 }

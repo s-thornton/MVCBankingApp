@@ -2,7 +2,6 @@ package view;
 
 import controller.AgentController;
 import model.*;
-import sun.management.Agent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,34 +9,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AgentThreadView extends JFrameView {
-    AccountModel current_account;
-    AgentThread Agent_Thread_Model;
-    double currency_rate;
-    public JTextField input_amount_thread = new JTextField(20);
-    public JTextField ops_per_second = new JTextField(20);
+    private AgentThread Agent_Thread_Model;
     public JTextField state = new JTextField(15);
-    public JTextField amount_transferred = new JTextField(15);
-    public JTextField ops_completed = new JTextField(15);
+    private JTextField amount_transferred = new JTextField(15);
+    private JTextField ops_completed = new JTextField(15);
     public JButton dismiss_button;
 
     public static final String stop = "Stop Agent";
-    public static final String dismiss_string = "Dismiss";
-    public static final String input_amount_thread_string = "Amount in $:";
-    public static final String ops_per_second_string = "Operations per Second:";
-    public static final String state_string = "State:";
-    public static final String amount_transferred_string = "Amount in $ Transferred:";
-    public static final String ops_completed_string = "Operations Completed";
+    private static final String dismiss_string = "Dismiss";
+    private static final String input_amount_thread_string = "Amount in $:";
+    private static final String ops_per_second_string = "Operations per Second:";
+    private static final String state_string = "State:";
+    private static final String amount_transferred_string = "Amount in $ Transferred:";
+    private static final String ops_completed_string = "Operations Completed";
 
 
     public AgentThreadView(AgentModel model, AgentController controller, AccountModel acc, AgentThread ATModel){
         super(model, controller);
-        this.current_account = acc;
         this.Agent_Thread_Model = ATModel;
 
         JPanel panel = new JPanel();
         Jbutton_handler button_hander = new Jbutton_handler();
 
+        JTextField input_amount_thread = new JTextField(20);
         input_amount_thread.setText(Double.toString(Agent_Thread_Model.get_amount()));
+        JTextField ops_per_second = new JTextField(20);
         ops_per_second.setText(Double.toString(Agent_Thread_Model.get_ops()));
         state.setText(Agent_Thread_Model.get_state());
         amount_transferred.setText(Double.toString(Agent_Thread_Model.get_amount_transferred()));
@@ -93,7 +89,7 @@ public class AgentThreadView extends JFrameView {
         ops_completed.setText(Double.toString(Agent_Thread_Model.get_ops_completed()));
     }
 
-    class Jbutton_handler implements ActionListener {
+    private class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ((AgentController)getController()).operation(e.getActionCommand());
         }

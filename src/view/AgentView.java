@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class AgentView extends JFrameView{
 
-    AccountModel current_account;
+    private AccountModel current_account;
 
     private static final String id_string = "Agent ID:";
     private static final String amount_string = "Amount in $:";
@@ -65,7 +65,7 @@ public class AgentView extends JFrameView{
 
     }
 
-    class Jbutton_handler implements ActionListener {
+    private class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ((AgentController)getController()).operation(e.getActionCommand());
         }
