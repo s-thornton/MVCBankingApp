@@ -11,11 +11,11 @@ public class AgentThread extends Thread{
     private double amount;
     private double amount_transferred;
     boolean running = true;
-    private long operations_per_second = 0;
+    private double operations_per_second = 0;
     private double operations_completed = 0;
     private int agent_id;
     private String choice;
-    private String state;
+    private String state = "Running";
     private static List<Integer> id_list = new ArrayList<>();
 
 
@@ -23,7 +23,7 @@ public class AgentThread extends Thread{
         this.agent_id = id;
         this.current_account = acc;
         this.amount = a;
-        this.operations_per_second = (long)n*1000;
+        this.operations_per_second = n;
         this.choice = choice;
         this.agent_model = agent_model;
     }
@@ -50,7 +50,7 @@ public class AgentThread extends Thread{
                 operations_completed++;
                 ModelEvent update = new ModelEvent(current_account);
                 agent_model.notifyChanged(update);
-                sleep(operations_per_second);
+                sleep((long)operations_per_second*1000);
             }
         } catch (Exception e) {
             e.printStackTrace();
