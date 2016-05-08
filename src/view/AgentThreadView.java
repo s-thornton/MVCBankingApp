@@ -1,18 +1,12 @@
 package view;
 
-
-import controller.AccountController;
 import controller.AgentController;
-import controller.BankingController;
-import controller.Controller;
 import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Arc2D;
-import java.util.ArrayList;
 
 public class AgentThreadView extends JFrameView {
     AccountModel current_account;
@@ -33,9 +27,7 @@ public class AgentThreadView extends JFrameView {
 
 
     public AgentThreadView(AgentModel model, AgentController controller, AccountModel acc, AgentThread ATModel){
-
         super(model, controller);
-
         this.current_account = acc;
 
         JPanel panel = new JPanel();

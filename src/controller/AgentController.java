@@ -2,6 +2,7 @@ package controller;
 
 import model.AccountModel;
 import model.AgentModel;
+import model.AgentThread;
 import view.AgentThreadView;
 import view.AgentView;
 import view.JFrameView;
@@ -11,19 +12,18 @@ public class AgentController extends AbstractController {
     private int num_agents = 0;
     private String operation;
 
-
     public AgentController(AccountModel acc, String option, boolean started){
         this.operation = option;
         this.current_account = acc;
-        setModel(new AgentModel(acc, 1, 1));
         if (!started) {
+            setModel(new AgentModel('1', acc, 1, 1));
             setView(new AgentView((AgentModel) getModel(), this, acc));
             ((JFrameView) getView()).setVisible(true);
             ((AgentView) getView()).setTitle(option + " Agent: " + num_agents +
                     " for account" + acc.getAccount_id());
         }
         else{
-            setView(new AgentThreadView((AgentModel) getModel(), this, acc));
+            setView(new AgentThreadView((AgentModel)getModel(), this, acc, ((AgentThread)getModel())));
             ((JFrameView) getView()).setVisible(true);
             ((AgentThreadView) getView()).setTitle(option + " Agent: " + num_agents +
                     " for account" + acc.getAccount_id());

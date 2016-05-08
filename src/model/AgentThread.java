@@ -36,7 +36,7 @@ public class AgentThread extends Thread{
 
     public int getAgent_id() { return agent_id; }
     public void setAgent_id(int agent_id) { this.agent_id = agent_id; }
-    public double get_amount_transferred() {return amount_transferred}
+    public double get_amount_transferred() {return amount_transferred;}
     public void set_amount_transferred(double amt) {this.amount_transferred = amt;}
     public double get_ops_completed() {return operations_completed;}
     public void set_ops_completed(double ops) {this.operations_completed = ops;}
