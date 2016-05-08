@@ -71,7 +71,8 @@ public class AgentThread extends Thread{
     }
     public static void removeID(Integer id){
         if (id_list.contains(id)){
-            id_list.remove(id);
+            id_list.remove(id); // doesn't remove at index id. actually removes the object id since it is of
+                                // type Integer instead of int. new trick learned from stack overflow:)
         }
     }
 
