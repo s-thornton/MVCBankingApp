@@ -33,4 +33,5 @@ public class AgentModel extends AbstractModel {
     public void setCurrent_account(AccountModel current_account) { this.current_account = current_account; }
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
+    public void stop_thread(AgentThread thread){ thread.running = false;}
 }

@@ -18,6 +18,7 @@ public class AgentThreadView extends JFrameView {
     public JTextField state = new JTextField(15);
     public JTextField amount_transferred = new JTextField(15);
     public JTextField ops_completed = new JTextField(15);
+    public JButton dismiss_button;
 
     public static final String stop = "Stop Agent";
     public static final String dismiss_string = "Dismiss";
@@ -49,7 +50,8 @@ public class AgentThreadView extends JFrameView {
         ops_completed.setEditable(false);
 
         JButton stop_button = new JButton(stop);
-        JButton dismiss_button = new JButton(dismiss_string);
+        dismiss_button = new JButton(dismiss_string);
+        dismiss_button.setEnabled(false);
 
         // labels :)
         JLabel input_amount_thread_label = new JLabel(input_amount_thread_string);

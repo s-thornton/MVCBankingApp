@@ -1,5 +1,5 @@
 name, id, balance
-Sean Thornton, 930421, 111600.55
+Sean Thornton, 930421, 111618.55
 Malapa Bushra, 123456, 100.0
 Peter Benjamin, 078910, 200.5
 Goday Priya, 125671, 0.5

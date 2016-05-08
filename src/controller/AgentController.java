@@ -61,7 +61,6 @@ public class AgentController extends AbstractController {
                 double ops = Double.parseDouble(((AgentView)getView()).ops.getText());
                 agentID = id_of_agent;
                 AgentThread.addId(id_of_agent);
-
                 // create and set the new view.. & kill the old one.
                 ATModel = ((AgentModel)getModel()).make_new_agent(id_of_agent, current_account, ops, amount_of_transaction, option);
                 ((JFrameView)getView()).dispose();
@@ -69,17 +68,21 @@ public class AgentController extends AbstractController {
                 ((JFrameView) getView()).setVisible(true);
                 ((AgentThreadView)getView()).setTitle(option + " Agent: " + ATModel.getAgent_id() +
                         " for account" + current_account.getAccount_id());
-
                 break;
 
             case AgentView.dismiss_string: // this also disposes the agentThreadView for some reason also.. #oo-re-usability at its finest.
                 ((JFrameView)getView()).dispose();
-                try {
-                    AgentThread.removeID(agentID); // when the view closes, we delete the agentid from the list.\
-                }catch (Exception e){
-                    System.out.print("cant delete agent id. " + e);
-                }
+//                try {
+//                    AgentThread.removeID(agentID); // when the view closes, we delete the agentid from the list.\
+//                }catch (Exception e){
+//                    System.out.print("cant delete agent id. " + e);
+//                }
                 break;
+            // kill the thread, enable the dismiss button, change the text in the view.
+            case AgentThreadView.stop:
+                ((AgentModel)getModel()).stop_thread(this.ATModel);
+                ((AgentThreadView)getView()).dismiss_button.setEnabled(true);
+                ((AgentThreadView)getView()).state.setText("Stopped");
         }
     }
 

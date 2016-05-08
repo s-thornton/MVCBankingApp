@@ -11,7 +11,7 @@ public class AgentThread extends Thread{
     public AgentModel agent_model;
     private double amount;
     private double amount_transferred;
-    private boolean running = true;
+    public boolean running = true;
     private double operations_per_second = 0;
     private double operations_completed = 0;
     private int agent_id;
@@ -74,5 +74,6 @@ public class AgentThread extends Thread{
         if (id_list.contains(id)) return false; // its in there.
         else return true; // its not. were good.
     }
+    public void stop_thread(){ running = false;}
 
 }
