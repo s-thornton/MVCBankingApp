@@ -20,22 +20,20 @@ public class AccountView extends JFrameView {
     public static final String DEPOSITAGENT = "Create Deposit Agent";
     public static final String SAVE = "Save";
     public static final String EXIT = "Exit";
-    public static ArrayList<AccountModel> accounts = new ArrayList<>();
 
     public AccountView (AccountModel model, AccountController controller, ArrayList<AccountModel> account_list) {
 
         super(model, controller);
 
-        accounts = account_list;
-        String[] accounts_array = new String[accounts.size()];
+        String[] accounts_array = new String[account_list.size()];
         int i = 0;
-        for(AccountModel a : accounts) {
+        for(AccountModel a : account_list) {
             accounts_array[i] = a.getName() + " " + a.getAccount_id();
             i++;
         }
         JComboBox accounts_dropdown = new JComboBox<>(accounts_array);
         accounts_dropdown.setSelectedIndex(0);
-        controller.current_account = accounts.get(0);
+        controller.current_account = account_list.get(0);
 
         JButton bank_usd_button = new JButton(BANK_USD);
         JButton bank_euro_button = new JButton(BANK_EURO);
@@ -75,16 +73,16 @@ public class AccountView extends JFrameView {
 
     public void modelChanged(ModelEvent event) { }
 
-    class Jbutton_handler implements ActionListener {
+    private class Jbutton_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             ((AccountController)getController()).operation(e.getActionCommand(), "input.txt");
         }
     }
 
-    class JComboBox_handler implements ActionListener {
+    private class JComboBox_handler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             JComboBox cb = (JComboBox)e.getSource();
-            int account_index = (int)cb.getSelectedIndex();
+            int account_index = cb.getSelectedIndex();
             ((AccountController)getController()).set_current_account(account_index);
         }
     }

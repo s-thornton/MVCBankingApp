@@ -12,7 +12,7 @@ abstract public class JFrameView extends JFrame implements View, ModelListener {
         setModel(model);
         setController(controller);
     }
-    public void registerWithModel(){
+    private void registerWithModel(){
         ((AbstractModel)model).addModelListener(this);
     }
     public Controller getController(){return controller;}

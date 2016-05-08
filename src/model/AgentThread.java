@@ -10,13 +10,13 @@ public class AgentThread extends Thread{
     private AgentModel agent_model;
     private double amount;
     private double amount_transferred;
-    public boolean running = true;
+    boolean running = true;
     private long operations_per_second = 0;
     private double operations_completed = 0;
     private int agent_id;
     private String choice;
     private String state;
-    private static List<Integer> id_list = new ArrayList<Integer>();
+    private static List<Integer> id_list = new ArrayList<>();
 
 
     public AgentThread (int id, AccountModel acc, double n, double a, String choice, AgentModel agent_model) {
@@ -69,5 +69,11 @@ public class AgentThread extends Thread{
     public static boolean checkID(int id){
         return !id_list.contains(id);
     }
+    public static void removeID(Integer id){
+        if (id_list.contains(id)){
+            id_list.remove(id);
+        }
+    }
+
 
 }

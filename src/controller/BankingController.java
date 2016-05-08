@@ -27,13 +27,7 @@ public class BankingController extends AbstractController {
                 "; Operations in " + currency);
         ((JFrameView)getView()).setVisible(true);
     }
-
-    public double getCurrency_rate() { return currency_rate; }
-    public void setCurrency_rate(double currency_rate) { this.currency_rate = currency_rate; }
-    public AccountModel getAccount() { return account; }
-    public void setAccount(AccountModel account) { this.account = account; }
     public String getCurrency() { return currency; }
-    public void setCurrency(String currency) { this.currency = currency; }
 
     public void operation(String o) {
         double amount;

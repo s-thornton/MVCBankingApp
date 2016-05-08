@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 //Bank interface class that passes operation input from user to the BankingController class
 public class BankingView extends JFrameView {
 
-    private AccountModel current_account;
     private double currency_rate;
 
     private static final String WITHDRAW = "Withdraw";
@@ -28,7 +27,6 @@ public class BankingView extends JFrameView {
 
     public BankingView(Model model, BankingController controller, AccountModel acc, double rate) {
         super(model, controller);
-        this.current_account = acc;
         this.currency_rate = rate;
 
         JPanel button_panel = new JPanel();
@@ -83,12 +81,6 @@ public class BankingView extends JFrameView {
 
     public void modelChanged(ModelEvent event) {
         current_account_balance.setText(String.format("%.2f", event.getUser_balance() * currency_rate));
-    }
-
-    public AccountModel getCurrent_account() { return current_account; }
-
-    public void setCurrent_account(AccountModel current_account) {
-        this.current_account = current_account;
     }
 
     private class Jbutton_handler implements ActionListener {
