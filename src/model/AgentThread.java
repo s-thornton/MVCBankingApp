@@ -51,7 +51,7 @@ public class AgentThread extends Thread{
                 }
                 ModelEvent update = new ModelEvent(current_account);
                 agent_model.notifyChanged(update);
-                sleep((long)operations_per_second*1000);
+                sleep((long)((1/operations_per_second)*1000));
             }
         } catch (Exception e) {
             e.printStackTrace();
