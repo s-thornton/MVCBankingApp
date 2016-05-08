@@ -10,11 +10,17 @@ public class AgentModel extends AbstractModel {
     private double operations_per_second;
     private ArrayList<AgentThread> agents = new ArrayList<>();
 
-    public AgentModel (int id, AccountModel acc, double n, double a) {
+    public AgentModel (int id, AccountModel acc, double n, double a, String choice) {
         this.agent_id = id;
         this.current_account = acc;
         this.amount = a;
         this.operations_per_second = n;
+    }
+    public AgentThread make_new_agent(int id, AccountModel acc, double n, double a, String choice){
+        AgentThread agent;
+        agent = new AgentThread(id, acc, n, a, choice, this); //agentmodel
+        agent.start();
+        return agent;
     }
 
     public int getAgent_id() { return agent_id; }
@@ -25,20 +31,6 @@ public class AgentModel extends AbstractModel {
     public void set_ops(double ops) {this.operations_per_second = ops;}
     public AccountModel getCurrent_account() { return current_account; }
     public void setCurrent_account(AccountModel current_account) { this.current_account = current_account; }
-
-    public AgentThread start_agent(double amount) {
-
-        for(AgentThread a : agents)
-            if(a.getAgent_id() == agent_id)
-                return null;
-
-        AgentThread new_agent_thread = new AgentThread(agent_id, current_account, operations_per_second, amount);
-        agents.add(new_agent_thread);
-        new_agent_thread.start();
-
-        return new_agent_thread;
-    }
-
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
 }

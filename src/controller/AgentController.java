@@ -23,7 +23,7 @@ public class AgentController extends AbstractController {
         this.current_account = acc;
         this.option = option;
 
-        setModel(new AgentModel('1', acc, 1, 1));
+        setModel(new AgentModel('1', acc, 1, 1, option));
         setView(new AgentView((AgentModel) getModel(), this, acc));
         ((JFrameView) getView()).setVisible(true);
         ((AgentView) getView()).setTitle(option + " Agent: " + num_agents +
@@ -63,12 +63,13 @@ public class AgentController extends AbstractController {
                 AgentThread.addId(id_of_agent);
 
                 // create and set the new view.. & kill the old one.
-                ATModel = new AgentThread(id_of_agent, current_account, ops, amount_of_transaction);
+                ATModel = ((AgentModel)getModel()).make_new_agent(id_of_agent, current_account, ops, amount_of_transaction, option);
                 ((JFrameView)getView()).dispose();
                 setView(new AgentThreadView((AgentModel)getModel(), this, current_account, ATModel));
                 ((JFrameView) getView()).setVisible(true);
                 ((AgentThreadView)getView()).setTitle(option + " Agent: " + ATModel.getAgent_id() +
                         " for account" + current_account.getAccount_id());
+
                 break;
 
             case AgentView.dismiss_string: // this also disposes the agentThreadView for some reason also.. #oo-re-usability at its finest.

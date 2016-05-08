@@ -1,6 +1,8 @@
 package model;
 
-public class ModelEvent {
+import java.awt.event.ActionEvent;
+
+public class ModelEvent{
     private double user_balance;
     private AccountModel user;
     private double amount_transferred;

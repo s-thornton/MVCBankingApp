@@ -2,6 +2,7 @@ package view;
 
 import controller.AgentController;
 import model.*;
+import sun.management.Agent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,11 +36,11 @@ public class AgentThreadView extends JFrameView {
         JPanel panel = new JPanel();
         Jbutton_handler button_hander = new Jbutton_handler();
 
-        input_amount_thread.setText(Double.toString(ATModel.get_amount()));
-        ops_per_second.setText(Double.toString(ATModel.get_ops()));
-        state.setText(ATModel.get_state());
-        amount_transferred.setText(Double.toString(ATModel.get_amount_transferred()));
-        ops_completed.setText(Double.toString(ATModel.get_ops_completed()));
+        input_amount_thread.setText(Double.toString(Agent_Thread_Model.get_amount()));
+        ops_per_second.setText(Double.toString(Agent_Thread_Model.get_ops()));
+        state.setText(Agent_Thread_Model.get_state());
+        amount_transferred.setText(Double.toString(Agent_Thread_Model.get_amount_transferred()));
+        ops_completed.setText(Double.toString(Agent_Thread_Model.get_ops_completed()));
 
         input_amount_thread.setEditable(false);
         ops_per_second.setEditable(false);
@@ -86,7 +87,8 @@ public class AgentThreadView extends JFrameView {
     }
 
     public void modelChanged(ModelEvent event) {
-
+        amount_transferred.setText(Double.toString(Agent_Thread_Model.get_amount_transferred()));
+        ops_completed.setText(Double.toString(Agent_Thread_Model.get_ops_completed()));
     }
 
     class Jbutton_handler implements ActionListener {
