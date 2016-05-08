@@ -10,6 +10,10 @@ Class assignment as an introduction into mvc architecture implementation of a ba
 
 Please use provided input.txt file and pass that file as a parameter when executing the main class AccountView.java
 
+## Contributors
+
+Sean Thornton and Jared Walton
+
 ## License
 
 MIT
