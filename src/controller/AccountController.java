@@ -1,7 +1,6 @@
 package controller;
 
 import model.AccountModel;
-import model.AgentModel;
 import view.AccountView;
 import view.JFrameView;
 
@@ -9,13 +8,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 //Receives input from AccountView and accesses AccountModel and BankingController to perform operations
 public class AccountController extends AbstractController {
-    public ArrayList<AccountModel> accounts = new ArrayList<>();
+    private ArrayList<AccountModel> accounts = new ArrayList<>();
     public AccountModel current_account;
-    public String file_name;
 
-    public AccountController(ArrayList<AccountModel> acc, String fn){
+    public AccountController(ArrayList<AccountModel> acc){
         accounts = acc;
-        file_name = fn;
         setModel(new AccountModel("1", "Sean", 10, 0));
         setView(new AccountView((AccountModel)getModel(), this, accounts));
         ((JFrameView)getView()).setVisible(true);
@@ -50,7 +47,7 @@ public class AccountController extends AbstractController {
         }
     }
 
-    public void save(String fn) {
+    private void save(String fn) {
         try {
             PrintWriter writer = new PrintWriter(fn);
             writer.println("name, id, balance");

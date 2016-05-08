@@ -111,7 +111,7 @@ public class AccountView extends JFrameView {
                 index++;
             }
             reader.close();
-            new AccountController(accounts, file_name);
+            new AccountController(accounts);
         } catch(Exception e) {
             e.printStackTrace();
             System.out.print("Input file input.txt not found, please place 'input.txt' in directory MVCBankingApp");

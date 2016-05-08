@@ -11,7 +11,7 @@ public class AgentThread extends Thread{
     private double amount;
     private double amount_transferred;
     public boolean running = true;
-    private double operations_per_second = 0;
+    private long operations_per_second = 0;
     private double operations_completed = 0;
     private int agent_id;
     private String choice;
@@ -23,7 +23,7 @@ public class AgentThread extends Thread{
         this.agent_id = id;
         this.current_account = acc;
         this.amount = a;
-        this.operations_per_second = 1;// (n * 1000);
+        this.operations_per_second = (long)n*1000;
         this.choice = choice;
         this.agent_model = agent_model;
     }
@@ -32,27 +32,25 @@ public class AgentThread extends Thread{
         try {
             while (this.running) {
                 if (choice.equals("Withdraw")) {
-                    //if you try to withdraw more that you have
+                    //if you try to withdraw more that you have do nothing and change the state to blocked.
                     if ((current_account.getBalance() - amount) < 0) {
-                        state = "Blocked"; System.out.println("blocked");
+                        state = "Blocked";
 
                     }
                     // otherwise, go ahead and do your thing.
                     else {
                         amount_transferred -= amount;
                         current_account.setBalance(current_account.getBalance()-amount);
-                        System.out.println(current_account.getBalance());
-                        state = "Running";System.out.println("running");
+                        state = "Running";
                     }
                 }else {
                     amount_transferred += amount; //deposit.
                     current_account.setBalance(current_account.getBalance()+amount);
-                    System.out.println(current_account.getBalance());
                 }
                 operations_completed++;
-                ModelEvent update = new ModelEvent(current_account, operations_completed, amount_transferred, state);
+                ModelEvent update = new ModelEvent(current_account);
                 agent_model.notifyChanged(update);
-                sleep((long) operations_per_second * 1000);
+                sleep(operations_per_second);
             }
         } catch (Exception e) {
             e.printStackTrace();

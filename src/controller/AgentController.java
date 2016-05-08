@@ -10,22 +10,19 @@ import javax.swing.*;
 
 public class AgentController extends AbstractController {
     private AccountModel current_account;
-    private int num_agents = 0;
-    private String operation;
-    AgentThread ATModel;
-    String option;
-    int agentID;
+    private AgentThread ATModel;
+    private String option;
 
 
 
     public AgentController(AccountModel acc, String option){
-        this.operation = option;
         this.current_account = acc;
         this.option = option;
 
         setModel(new AgentModel('1', acc, 1, 1, option));
         setView(new AgentView((AgentModel) getModel(), this, acc));
         ((JFrameView) getView()).setVisible(true);
+        int num_agents = 0;
         ((AgentView) getView()).setTitle(option + " Agent: " + num_agents +
                 " for account" + acc.getAccount_id());
 
@@ -59,7 +56,6 @@ public class AgentController extends AbstractController {
                 // get values for operations per second & transaction amount & append the agent id to the list.
                 double amount_of_transaction = Double.parseDouble(((AgentView)getView()).input_amount.getText());
                 double ops = Double.parseDouble(((AgentView)getView()).ops.getText());
-                agentID = id_of_agent;
                 AgentThread.addId(id_of_agent);
                 // create and set the new view.. & kill the old one.
                 ATModel = ((AgentModel)getModel()).make_new_agent(id_of_agent, current_account, ops, amount_of_transaction, option);

@@ -87,6 +87,7 @@ public class AgentThreadView extends JFrameView {
     public void modelChanged(ModelEvent event) {
         amount_transferred.setText(Double.toString(Agent_Thread_Model.get_amount_transferred()));
         ops_completed.setText(Double.toString(Agent_Thread_Model.get_ops_completed()));
+        state.setText(Agent_Thread_Model.get_state());
     }
 
     private class Jbutton_handler implements ActionListener {
