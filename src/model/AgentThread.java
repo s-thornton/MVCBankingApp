@@ -52,6 +52,16 @@ public class AgentThread extends Thread{
     public void set_ops_completed(double ops) {this.operations_completed = ops;}
     public void setAgent_id(int agent_id) { this.agent_id = agent_id; }
     public static void addId(int id){ id_list.add(id);}
+    public static void removeID(int id){
+        for (Integer _id: id_list){
+
+            System.out.print(_id);
+            if (_id == id){
+                id_list.remove(_id);
+            }
+        }
+    }
+
     public static boolean checkID(int id){
         if (id_list.contains(id)) return false; // its in there.
         else return true; // its not. were good.
