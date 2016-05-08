@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class AgentThreadView extends JFrameView {
     AccountModel current_account;
+    AgentThread Agent_Thread_Model;
     double currency_rate;
     public JTextField input_amount_thread = new JTextField(20);
     public JTextField ops_per_second = new JTextField(20);
@@ -29,14 +30,16 @@ public class AgentThreadView extends JFrameView {
     public AgentThreadView(AgentModel model, AgentController controller, AccountModel acc, AgentThread ATModel){
         super(model, controller);
         this.current_account = acc;
+        this.Agent_Thread_Model = ATModel;
 
         JPanel panel = new JPanel();
         Jbutton_handler button_hander = new Jbutton_handler();
-        input_amount_thread.setText(Double.toString(model.get_amount()));
-        ops_per_second.setText(Double.toString(model.get_ops()));
-        state.setText("Running");
+
+        input_amount_thread.setText(Double.toString(ATModel.get_amount()));
+        ops_per_second.setText(Double.toString(ATModel.get_ops()));
+        state.setText(ATModel.get_state());
         amount_transferred.setText(Double.toString(ATModel.get_amount_transferred()));
-        ops_completed.setText("0");
+        ops_completed.setText(Double.toString(ATModel.get_ops_completed()));
 
         input_amount_thread.setEditable(false);
         ops_per_second.setEditable(false);

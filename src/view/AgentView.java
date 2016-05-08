@@ -70,7 +70,4 @@ public class AgentView extends JFrameView{
             ((AgentController)getController()).operation(e.getActionCommand());
         }
     }
-
-
-
 }
