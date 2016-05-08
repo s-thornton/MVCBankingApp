@@ -42,12 +42,13 @@ public class AgentThread extends Thread{
                         amount_transferred -= amount;
                         current_account.setBalance(current_account.getBalance()-amount);
                         state = "Running";
+                        operations_completed++;
                     }
                 }else {
                     amount_transferred += amount; //deposit.
                     current_account.setBalance(current_account.getBalance()+amount);
+                    operations_completed++;
                 }
-                operations_completed++;
                 ModelEvent update = new ModelEvent(current_account);
                 agent_model.notifyChanged(update);
                 sleep((long)operations_per_second*1000);
