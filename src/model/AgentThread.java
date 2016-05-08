@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 public class AgentThread extends Thread{
 
     private AccountModel current_account;
@@ -10,6 +12,7 @@ public class AgentThread extends Thread{
     private double operations_completed = 0;
     private int agent_id;
     private String state = "Running";
+    private static List<Integer> id_list = new ArrayList<Integer>();
 
 
     public AgentThread (int id, AccountModel acc, double n, double a) {
@@ -48,5 +51,10 @@ public class AgentThread extends Thread{
     public void set_amount_transferred(double amt) {this.amount_transferred = amt;}
     public void set_ops_completed(double ops) {this.operations_completed = ops;}
     public void setAgent_id(int agent_id) { this.agent_id = agent_id; }
+    public static void addId(int id){ id_list.add(id);}
+    public static boolean checkID(int id){
+        if (id_list.contains(id)) return false; // its in there.
+        else return true; // its not. were good.
+    }
 
 }

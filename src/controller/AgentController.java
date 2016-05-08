@@ -6,6 +6,7 @@ import model.AgentThread;
 import view.AgentThreadView;
 import view.AgentView;
 import view.JFrameView;
+import javax.swing.*;
 
 public class AgentController extends AbstractController {
     private AccountModel current_account;
@@ -32,6 +33,13 @@ public class AgentController extends AbstractController {
         switch(o){
             case AgentView.start_string:
                 int id_of_agent = Integer.parseInt(((AgentView)getView()).agent_id.getText());
+                if (AgentThread.checkID(id_of_agent)){
+                    AgentThread.addId(id_of_agent);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Agent ID in use, Please choose another.");
+                    ((AgentView)getView()).agent_id.setText("");
+                    return;
+                }
                 double amount_of_transaction = Double.parseDouble(((AgentView)getView()).input_amount.getText());
                 double ops = Double.parseDouble(((AgentView)getView()).ops.getText());
                 ATModel = new AgentThread(id_of_agent, current_account, ops, amount_of_transaction);
